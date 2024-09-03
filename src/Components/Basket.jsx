@@ -1,11 +1,6 @@
-import { useEffect } from "react"
 import { BasketItem } from "./BasketItem"
 
 export const Basket = ({cart, total, onTotal, onAdd, onDown, onRemove}) => {
-
-    useEffect(() => {
-        onTotal(cart.reduce((initValue, curValue) => initValue + (curValue.count * curValue.price), 0))
-    }, [cart])
 
     return <div className="col-md-5">
         <div>

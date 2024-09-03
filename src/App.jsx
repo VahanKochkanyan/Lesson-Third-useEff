@@ -13,12 +13,18 @@ export default function App() {
     {id: 106, name:"Puma Rs-X6", price:82, photo:"https://m.media-amazon.com/images/I/71ZApeHKYSL._AC_UY900_.jpg"},
     {id: 107, name:"Puma Rs-X7", price:120, photo:"https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_450,h_450/global/395551/06/sv01/fnd/EEA/fmt/png"},
     {id: 108, name:"Puma Rs-X8", price:75, photo:"https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/371860/01/sv01/fnd/PNA/fmt/png/RS-X-Subvert-Men's-Sneakers"},
-    {id: 109, name:"Puma Rs-X8", price:225, photo:"https://images.footlocker.com/is/image/EBFL2/38989601?wid=250&hei=250"},
+    {id: 109, name:"Puma Rs-X9", price:225, photo:"https://images.footlocker.com/is/image/EBFL2/38989601?wid=250&hei=250"},
   ])
 
 
   const [basket, setBasket]  = useState([])
   const [total, setTotal] = useState(0)
+  
+  useEffect(() => {
+    setTotal(basket.reduce((initValue, curValue) => initValue + (curValue.count * curValue.price), 0))
+}, [basket])
+
+
 
   const moveToCart = (id) => {
     let prod = products.find((x) => x.id == id);
@@ -67,7 +73,6 @@ export default function App() {
       />
       <Basket
         total={total}
-        onTotal={setTotal}
         cart = {basket}
         onAdd={handleAdd}
         onDown={handleDown}
